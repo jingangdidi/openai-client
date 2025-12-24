@@ -469,7 +469,7 @@ pub struct AudioDataIdParameter {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub struct AudioParameters {
     /// The voice the model uses to respond.
-    pub voice: Voice,
+    pub voice: String, // Voice
     /// Specifies the output audio format.
     pub format: AudioFormat,
 }
