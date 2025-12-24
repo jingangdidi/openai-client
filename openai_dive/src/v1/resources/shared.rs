@@ -26,13 +26,15 @@ pub struct Usage {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub struct InputTokensDetails {
     /// The number of tokens that were retrieved from the cache.
-    pub cached_tokens: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cached_tokens: Option<u32>, // u32
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub struct OutputTokensDetails {
     /// The number of reasoning tokens.
-    pub reasoning_tokens: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reasoning_tokens: Option<u32>, // u32
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
