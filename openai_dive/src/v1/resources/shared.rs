@@ -43,7 +43,8 @@ pub struct PromptTokensDetails {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub audio_tokens: Option<u32>,
     /// Cached tokens present in the prompt.
-    pub cached_tokens: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cached_tokens: Option<u32>, // u32
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
