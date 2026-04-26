@@ -297,7 +297,7 @@ impl Client {
             .query(&query_params.into())
             .eventsource()
             //.unwrap();
-            .map_err(|error| APIError::BadRequestError(error.to_string()))
+            .map_err(|error| APIError::BadRequestError(error.to_string()))?;
 
         Client::process_stream::<O>(event_source).await
     }
