@@ -286,7 +286,7 @@ impl Client {
         path: &str,
         parameters: &I,
         query_params: impl Into<Option<&HashMap<String, String>>>,
-    ) -> Pin<Box<dyn Stream<Item = Result<O, APIError>> + Send>>
+    ) -> Result<Pin<Box<dyn Stream<Item = Result<O, APIError>> + Send>>, APIError>
     where
         I: Serialize,
         O: DeserializeOwned + std::marker::Send + 'static,
@@ -299,7 +299,7 @@ impl Client {
             //.unwrap();
             .map_err(|error| APIError::BadRequestError(error.to_string()))?;
 
-        Client::process_stream::<O>(event_source).await
+        Ok(Client::process_stream::<O>(event_source).await)
     }
 
     #[cfg(feature = "stream")]
