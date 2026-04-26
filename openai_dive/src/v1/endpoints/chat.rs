@@ -75,14 +75,14 @@ impl Chat<'_> {
         };
         stream_parameters.stream = Some(true);
 
-        Ok(self
+        self
             .client
             .post_stream(
                 "/chat/completions",
                 &stream_parameters,
                 stream_parameters.query_params.as_ref(),
             )
-            .await)
+            .await
     }
 }
 
