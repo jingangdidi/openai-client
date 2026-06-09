@@ -412,10 +412,6 @@ pub enum DeltaChatMessage {
         content: String,
         /// Tool call that this message is responding to.
         tool_call_id: String,
-        /// If the audio output modality is requested, this object contains data
-        /// about the audio response from the model. [Learn more](https://platform.openai.com/docs/guides/audio).
-        #[serde(skip_serializing_if = "Option::is_none")]
-        audio: Option<ChatCompletionAudio>,
     },
     #[serde(untagged)]
     Untagged {
@@ -433,6 +429,10 @@ pub enum DeltaChatMessage {
         tool_calls: Option<Vec<DeltaToolCall>>,
         #[serde(skip_serializing_if = "Option::is_none")]
         tool_call_id: Option<String>,
+        /// If the audio output modality is requested, this object contains data
+        /// about the audio response from the model. [Learn more](https://platform.openai.com/docs/guides/audio).
+        #[serde(skip_serializing_if = "Option::is_none")]
+        audio: Option<ChatCompletionAudio>,
     },
 }
 
