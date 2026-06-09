@@ -61,9 +61,9 @@ impl Responses<'_> {
         let mut stream_parameters = ResponseParameters { ..parameters };
         stream_parameters.stream = Some(true);
 
-        Ok(self
+        self
             .client
             .post_stream("/responses", &stream_parameters, None)
-            .await)
+            .await
     }
 }
