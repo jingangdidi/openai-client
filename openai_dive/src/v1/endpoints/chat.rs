@@ -75,14 +75,14 @@ impl Chat<'_> {
         };
         stream_parameters.stream = Some(true);
 
-        Ok(self
+        self
             .client
             .post_stream(
                 "/chat/completions",
                 &stream_parameters,
                 stream_parameters.query_params.as_ref(),
             )
-            .await)
+            .await
     }
 }
 
@@ -143,6 +143,7 @@ where
                         name: _,
                         tool_calls,
                         tool_call_id: _,
+                        audio,
                     } = &mut choice.delta
                     {
                         match this.current_role {
@@ -166,6 +167,7 @@ where
                                     reasoning_content: reasoning_content.clone(),
                                     refusal: refusal.clone(),
                                     tool_calls: tool_calls.clone(),
+                                    audio: audio.clone(),
                                 }
                             }
                             _ => {}
